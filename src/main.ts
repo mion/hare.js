@@ -1,6 +1,21 @@
 import * as hare from "./hare";
 import * as _ from "lodash";
 
+function toHTML(x: any): string {
+  if (_.isString(x)) {
+    return `<pre class="string">"${x}"</pre>`;
+  } else if (_.isInteger(x)) {
+    return `<pre class="integer">${x}</pre>`;
+  } else if (_.isNumber(x)) {
+    return `<pre class="number">${x}</pre>`;
+  } else if (_.isArray(x)) {
+    let html = x.map(toHTML).join("<b>, </b>");
+    return `<pre class="array">${html}</pre>`;
+  } else {
+    return `<pre class="thing">${x.toString()}</pre>`;
+  }
+}
+
 function main() {
   console.log(hare.tokenize("(hello 1 2 3)"));
   let testCases = [
@@ -20,9 +35,9 @@ function main() {
       id: testId++,
       success: _.isEqual(actual, tc.expected),
       funcName: tc.funcName,
-      args: tc.args,
-      expected: tc.expected,
-      actual: actual
+      args: toHTML(tc.args),
+      expected: toHTML(tc.expected),
+      actual: toHTML(actual)
     };
   });
   let outputElement = document.getElementById('output');
