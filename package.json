@@ -24,6 +24,9 @@
   },
   "homepage": "https://github.com/mion/hare.js#readme",
   "devDependencies": {
-    "mocha": "^4.0.1"
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^3.2.2",
+    "mocha": "^4.0.1",
+    "typescript": "^2.5.3"
   }
 }
