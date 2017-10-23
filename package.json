@@ -2,7 +2,7 @@
   "name": "hare.js",
   "version": "0.0.0",
   "description": "The Revenge of the Nerds.",
-  "main": "index.js",
+  "main": "./dist/main.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha"
   },
