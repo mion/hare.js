@@ -1,8 +1,7 @@
-import { sayHello } from "./greet"
+import * as hare from "./hare"
 
-function showHello(divName: string, name: string) {
-    const elt = document.getElementById(divName);
-    elt.innerText = sayHello(name);
+function main() {
+    console.log(hare.tokenize("(hello 1 2 3)"));
 }
 
-showHello("greeting", "TypeScript");
+main();
