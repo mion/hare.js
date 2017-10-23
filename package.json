@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/mion/hare.js/issues"
   },
-  "homepage": "https://github.com/mion/hare.js#readme"
+  "homepage": "https://github.com/mion/hare.js#readme",
+  "devDependencies": {
+    "mocha": "^4.0.1"
+  }
 }
