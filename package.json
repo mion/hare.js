@@ -1,0 +1,26 @@
+{
+  "name": "hare.js",
+  "version": "0.0.0",
+  "description": "The Revenge of the Nerds.",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mion/hare.js.git"
+  },
+  "keywords": [
+    "hare",
+    "javascript",
+    "js",
+    "programming",
+    "language"
+  ],
+  "author": "Gabriel Vieira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mion/hare.js/issues"
+  },
+  "homepage": "https://github.com/mion/hare.js#readme"
+}
