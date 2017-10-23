@@ -1,7 +1,7 @@
 {
   "files": [
     "src/main.ts",
-    "src/greet.ts"
+    "src/hare.ts"
   ],
   "compilerOptions": {
     "noImplicitAny": true,

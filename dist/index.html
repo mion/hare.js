@@ -3,9 +3,110 @@
     <head>
         <meta charset="UTF-8" />
         <title>Hello World!</title>
+        <style media="screen">
+            /* http://meyerweb.com/eric/tools/css/reset/
+               v2.0 | 20110126
+               License: none (public domain)
+            */
+
+            html, body, div, span, applet, object, iframe,
+            h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+            a, abbr, acronym, address, big, cite, code,
+            del, dfn, em, img, ins, kbd, q, s, samp,
+            small, strike, strong, sub, sup, tt, var,
+            b, u, i, center,
+            dl, dt, dd, ol, ul, li,
+            fieldset, form, label, legend,
+            table, caption, tbody, tfoot, thead, tr, th, td,
+            article, aside, canvas, details, embed,
+            figure, figcaption, footer, header, hgroup,
+            menu, nav, output, ruby, section, summary,
+            time, mark, audio, video {
+            	margin: 0;
+            	padding: 0;
+            	border: 0;
+            	font-size: 100%;
+            	font: inherit;
+            	vertical-align: baseline;
+            }
+            /* HTML5 display-role reset for older browsers */
+            article, aside, details, figcaption, figure,
+            footer, header, hgroup, menu, nav, section {
+            	display: block;
+            }
+            body {
+            	line-height: 1;
+            }
+            ol, ul {
+            	list-style: none;
+            }
+            blockquote, q {
+            	quotes: none;
+            }
+            blockquote:before, blockquote:after,
+            q:before, q:after {
+            	content: '';
+            	content: none;
+            }
+            table {
+            	border-collapse: collapse;
+            	border-spacing: 0;
+            }
+        </style>
+        <style media="screen">
+            .hare {
+                font-family: 'Inconsolata-g', monospace;
+                font-size: 13px;
+                position: relative;
+                line-height: 1.7em;
+            }
+            .hare nav {
+                display: block;
+                background-color: #000;
+                color: #eee;
+                padding: 1em;
+                width: 100%;
+            }
+            .hare h1 {
+                font-size: 2em;
+                display: inline-block;
+            }
+            .hare h3 {
+                font-size: 1em;
+                display: inline-block;
+            }
+            .hare .test {
+                background-color: #EEE;
+                border: 1px solid #DDD;
+                padding: 1em;
+            }
+            .hare pre {
+                display: inline-block;
+                color: #DDD;
+                padding: 1em;
+                margin: 1em;
+                background-color: #333;
+            }
+            .test-ok .symbol {
+                color: blue;
+                margin-right: 1em;
+                margin-left: 1em;
+            }
+            .test-fail .symbol {
+                color: red;
+                margin-right: 1em;
+                margin-left: 1em;
+            }
+        </style>
     </head>
     <body>
-        <p id="greeting">Loading ...</p>
+        <div class="hare">
+            <nav>
+                <h1>hare</h1>
+                <h3>0.0.1</h3>
+            </nav>
+            <p id="output">Running test suite...</p>
+        </div>
         <script src="bundle.js"></script>
     </body>
 </html>
