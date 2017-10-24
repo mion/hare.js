@@ -16,6 +16,12 @@ function toPrettyString(x: any):string {
       return `${key}: ` + toPrettyString(value);
     });
     return `{${pairs.join(', ')}}`
+  } else if (_.isNull(x)) {
+    return 'null';
+  } else if (_.isUndefined(x)) {
+    return 'undefined';
+  } else if (_.isNaN(x)) {
+    return 'NaN';
   } else {
     return x.toString();
   }
@@ -23,7 +29,8 @@ function toPrettyString(x: any):string {
 
 function main() {
   console.log(hare.tokenize("(hello 1 2 3)"));
-  let testCases = [
+  // tokenize
+  let testCases: [ {args: Array<any>, expected: any, funcName: string} ] = [
     {
       args: [
         '(hello 1 2 3)'
@@ -39,6 +46,37 @@ function main() {
       funcName: 'tokenize'
     },
   ];
+
+  // parse
+  let rawString = '(define (square x) (* x x))';
+  let ctx = new hare.Context();
+  let root = new hare.List();
+  ctx.add(root);
+
+  let params = new hare.List();
+  ctx.add(params);
+  ctx.push(params, new hare.Atom('square'));
+  ctx.push(params, new hare.Atom('x'));
+
+  let body = new hare.List();
+  ctx.add(body);
+  ctx.push(body, new hare.Atom('*'));
+  ctx.push(body, new hare.Atom('x'));
+  ctx.push(body, new hare.Atom('x'));
+
+  ctx.push(root, new hare.Atom('define'));
+  ctx.push(root, params);
+  ctx.push(root, body);
+
+  testCases.push({
+      args: [
+        rawString
+      ],
+      expected: root,
+      funcName: 'parse'
+  });
+
+  // run tests
   var testId = 1
   let testResults = testCases.map(function (tc) {
     let func:Function = hare[tc.funcName];
@@ -52,19 +90,19 @@ function main() {
       actual: toPrettyString(actual)
     };
   });
-  let testDataById = {}
+  let testDataById: { [id: string] : { argsString: string, expectedString: string, actualString: string } } = {};
   let outputElement = document.getElementById('hare');
   _.each(testResults, function (tr) {
     // set window variables
     testDataById[tr.id] = {
-      args: tr.args,
-      expected: tr.expected,
-      actual: tr.actual
+      argsString: tr.args,
+      expectedString: tr.expected,
+      actualString: tr.actual
     };
     let resultSymbol = (tr.success ? '✓' : '✗');
     let resultClass = (tr.success ? 'ok': 'fail');
     let testCaseDiv = document.createElement('div');
-    let encloseInCellHTML = function (str) { return `<div class="cell">${str}</div>`; }
+    let encloseInCellHTML = function (str: string) { return `<div class="cell">${str}</div>`; }
     let cellsHTML = _.map([`#${tr.id}`, resultSymbol, tr.funcName, tr.args, '→', tr.actual, '≠', tr.expected], encloseInCellHTML).join('')
     testCaseDiv.innerHTML = `<div class="test-case ${resultClass}">${cellsHTML}</div>`
     outputElement.appendChild(testCaseDiv);
