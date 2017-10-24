@@ -1,6 +1,10 @@
 import * as hare from "./hare";
 import * as _ from "lodash";
 
+const lg = console.log;
+const er = console.error;
+const wa = console.warn;
+
 function toPrettyString(x: any):string {
   if (_.isString(x)) {
     return `"${x}"`
@@ -48,16 +52,28 @@ function main() {
       actual: toPrettyString(actual)
     };
   });
+  let testDataById = {}
   let outputElement = document.getElementById('hare');
   _.each(testResults, function (tr) {
+    // set window variables
+    testDataById[tr.id] = {
+      args: tr.args,
+      expected: tr.expected,
+      actual: tr.actual
+    };
     let resultSymbol = (tr.success ? '✓' : '✗');
     let resultClass = (tr.success ? 'ok': 'fail');
     let testCaseDiv = document.createElement('div');
     let encloseInCellHTML = function (str) { return `<div class="cell">${str}</div>`; }
-    let cellsHTML = _.map([resultSymbol, tr.funcName, tr.args, '→', tr.actual, '≠', tr.expected], encloseInCellHTML).join('')
+    let cellsHTML = _.map([`#${tr.id}`, resultSymbol, tr.funcName, tr.args, '→', tr.actual, '≠', tr.expected], encloseInCellHTML).join('')
     testCaseDiv.innerHTML = `<div class="test-case ${resultClass}">${cellsHTML}</div>`
     outputElement.appendChild(testCaseDiv);
   }).join("<br>");
+  if (_.isUndefined(window['test'])) {
+    window['test'] = testDataById;
+  } else {
+    console.warn("hare.js: variable 'window.test' is already defined. Cannot inject test variables.");
+  }
 }
 
 main();
