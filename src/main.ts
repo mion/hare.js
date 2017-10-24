@@ -26,7 +26,14 @@ function main() {
       ],
       expected: ['(', 'hello', '1', '2', '3', ')'],
       funcName: 'tokenize'
-    }
+    },
+    {
+      args: [
+        '(hello (1 2) 3 () 4)'
+      ],
+      expected: ['(', 'hello', '(', '1', '2', ')', '3', '(', ')', '4', ')'],
+      funcName: 'tokenize'
+    },
   ];
   var testId = 1
   let testResults = testCases.map(function (tc) {
@@ -47,7 +54,7 @@ function main() {
     let resultClass = (tr.success ? 'ok': 'fail');
     let testCaseDiv = document.createElement('div');
     let encloseInCellHTML = function (str) { return `<div class="cell">${str}</div>`; }
-    let cellsHTML = _.map([resultSymbol, tr.funcName, tr.args, '→', tr.expected, '≠', tr.actual], encloseInCellHTML).join('')
+    let cellsHTML = _.map([resultSymbol, tr.funcName, tr.args, '→', tr.actual, '≠', tr.expected], encloseInCellHTML).join('')
     testCaseDiv.innerHTML = `<div class="test-case ${resultClass}">${cellsHTML}</div>`
     outputElement.appendChild(testCaseDiv);
   }).join("<br>");
