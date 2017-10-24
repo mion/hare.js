@@ -4,6 +4,6 @@ export function tokenize(str: string) {
   return _.filter(
     str.replace(/\(/g, "( ").replace(/\)/g, " )").split(" "),
     function (s) {
-      return !_.isUndefined(s);
+      return !_.isEmpty(s);
     });
 }
