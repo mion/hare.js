@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>Hello World!</title>
+        <title>Hare Test Suite</title>
         <style media="screen">
             /* http://meyerweb.com/eric/tools/css/reset/
                v2.0 | 20110126
@@ -55,47 +55,50 @@
         </style>
         <style media="screen">
             .hare {
-                font-family: 'Inconsolata-g', monospace;
                 font-size: 13px;
                 position: relative;
-                line-height: 1.7em;
             }
-            .hare nav {
+            nav {
                 display: block;
                 background-color: #000;
                 color: #eee;
-                padding: 1em;
+                padding: 1.5em;
                 width: 100%;
             }
-            .hare h1 {
-                font-size: 2em;
+            nav h1 {
+                font-size: 1.5em;
                 display: inline-block;
+                font-family: sans-serif;
             }
-            .hare h3 {
+            nav h3 {
                 font-size: 1em;
+                color: #CCC;
                 display: inline-block;
+                font-family: monospace;
+                margin-left: 0.5em;
             }
-            .hare .test {
-                background-color: #EEE;
-                border: 1px solid #DDD;
-                padding: 1em;
-            }
-            pre {
-                display: inline-block;
-                color: #eee;
-                padding: 0.5em;
+            .test-case {
+                font-family: 'Inconsolata-g', monospace;
+                background-color: #F5F5F5;
+                border: 1px solid rgba(0, 0, 0, 0.25);
                 margin: 0.5em;
-                background-color: #111;
+                display: block;
             }
-            .test-ok .symbol {
-                color: blue;
-                margin-right: 1em;
-                margin-left: 1em;
+            .test-case .cell {
+                display: inline-block;
+                padding: 1em;
+                width: auto;
             }
-            .test-fail .symbol {
-                color: red;
-                margin-right: 1em;
-                margin-left: 1em;
+            .test-case .cell.symbol {
+                font-family: monospace;
+            }
+            .ok {
+                color: #030;
+                background-color: #0F4;
+            }
+            .fail {
+                color: #FFF;
+                background-color: #D00;
             }
         </style>
     </head>
@@ -103,9 +106,48 @@
         <div class="hare">
             <nav>
                 <h1>hare</h1>
-                <h3>0.0.1</h3>
+                <h3>(0.1)</h3>
             </nav>
-            <p id="output">Running test suite...</p>
+            <div class="test-case fail">
+                <div class="cell symbol">
+                    ✗
+                </div>
+                <div class="cell func">
+                    tokenize
+                </div>
+                <div class="cell args">
+                    "(foo, bar)"
+                </div>
+                <div class="cell arrow">
+                    →
+                </div>
+                <div class="cell actual">
+                    ["bar"]
+                </div>
+                <div class="cell arrow">
+                    ≠
+                </div>
+                <div class="cell expected">
+                    ["foo", "bar"]
+                </div>
+            </div>
+            <div class="test-case ok">
+                <div class="cell symbol">
+                    ✓
+                </div>
+                <div class="cell func">
+                    tokenize
+                </div>
+                <div class="cell args">
+                    "(quux 1 2)"
+                </div>
+                <div class="cell arrow">
+                    →
+                </div>
+                <div class="cell actual">
+                    ["quux", "1", "2"]
+                </div>
+            </div>
         </div>
         <script src="bundle.js"></script>
     </body>

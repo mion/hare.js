@@ -40,12 +40,12 @@ function main() {
       actual: toHTML(actual)
     };
   });
-  let outputElement = document.getElementById('output');
-  outputElement.innerHTML = _.map(testResults, function (tr) {
-    let resultSymbol = (tr.success ? '✓' : '✗');
-    let resultClass = (tr.success ? 'test-ok': 'test-fail');
-    return `<div id="test-${tr.id}" class="test ${resultClass}"><b><span class="symbol">${resultSymbol}</span> ${tr.funcName}(</b><pre>${tr.args}</pre><b>)</b> → <pre>${tr.actual}</pre> ≠ <pre>${tr.expected}</pre></div>`;
-  }).join("<br>");
+  // let outputElement = document.getElementById('output');
+  // outputElement.innerHTML = _.map(testResults, function (tr) {
+  //   let resultSymbol = (tr.success ? '✓' : '✗');
+  //   let resultClass = (tr.success ? 'test-ok': 'test-fail');
+  //   return `<div id="test-${tr.id}" class="test ${resultClass}"><b><span class="symbol">${resultSymbol}</span> ${tr.funcName}(</b><pre>${tr.args}</pre><b>)</b> → <pre>${tr.actual}</pre> ≠ <pre>${tr.expected}</pre></div>`;
+  // }).join("<br>");
 }
 
 main();
