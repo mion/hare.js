@@ -54,7 +54,7 @@
             }
         </style>
         <style media="screen">
-            .hare {
+            #hare {
                 font-size: 13px;
                 position: relative;
             }
@@ -89,9 +89,6 @@
                 padding: 1em;
                 width: auto;
             }
-            .test-case .cell.symbol {
-                font-family: monospace;
-            }
             .ok {
                 color: #030;
                 background-color: #0F4;
@@ -103,12 +100,12 @@
         </style>
     </head>
     <body>
-        <div class="hare">
+        <div id="hare">
             <nav>
                 <h1>hare</h1>
                 <h3>(0.1)</h3>
             </nav>
-            <div class="test-case fail">
+            <!-- <div class="test-case fail">
                 <div class="cell symbol">
                     ✗
                 </div>
@@ -147,7 +144,7 @@
                 <div class="cell actual">
                     ["quux", "1", "2"]
                 </div>
-            </div>
+            </div> -->
         </div>
         <script src="bundle.js"></script>
     </body>

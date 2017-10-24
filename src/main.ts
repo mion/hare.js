@@ -1,18 +1,19 @@
 import * as hare from "./hare";
 import * as _ from "lodash";
 
-function toHTML(x: any): string {
+function toPrettyString(x: any):string {
   if (_.isString(x)) {
-    return `<pre class="string">"${x}"</pre>`;
-  } else if (_.isInteger(x)) {
-    return `<pre class="integer">${x}</pre>`;
-  } else if (_.isNumber(x)) {
-    return `<pre class="number">${x}</pre>`;
+    return `"${x}"`
   } else if (_.isArray(x)) {
-    let html = x.map(toHTML).join("<b>, </b>");
-    return `<pre class="array">${html}</pre>`;
+    let str = _.map(x, toPrettyString).join(', ')
+    return `[${str}]`
+  } else if (_.isObject(x)) {
+    let pairs = _.map(x, function (value, key) {
+      return `${key}: ` + toPrettyString(value);
+    });
+    return `{${pairs.join(', ')}}`
   } else {
-    return `<pre class="thing">${x.toString()}</pre>`;
+    return x.toString();
   }
 }
 
@@ -35,17 +36,21 @@ function main() {
       id: testId++,
       success: _.isEqual(actual, tc.expected),
       funcName: tc.funcName,
-      args: toHTML(tc.args),
-      expected: toHTML(tc.expected),
-      actual: toHTML(actual)
+      args: _.map(tc.args, toPrettyString).join(', '),
+      expected: toPrettyString(tc.expected),
+      actual: toPrettyString(actual)
     };
   });
-  // let outputElement = document.getElementById('output');
-  // outputElement.innerHTML = _.map(testResults, function (tr) {
-  //   let resultSymbol = (tr.success ? '✓' : '✗');
-  //   let resultClass = (tr.success ? 'test-ok': 'test-fail');
-  //   return `<div id="test-${tr.id}" class="test ${resultClass}"><b><span class="symbol">${resultSymbol}</span> ${tr.funcName}(</b><pre>${tr.args}</pre><b>)</b> → <pre>${tr.actual}</pre> ≠ <pre>${tr.expected}</pre></div>`;
-  // }).join("<br>");
+  let outputElement = document.getElementById('hare');
+  _.each(testResults, function (tr) {
+    let resultSymbol = (tr.success ? '✓' : '✗');
+    let resultClass = (tr.success ? 'ok': 'fail');
+    let testCaseDiv = document.createElement('div');
+    let encloseInCellHTML = function (str) { return `<div class="cell">${str}</div>`; }
+    let cellsHTML = _.map([resultSymbol, tr.funcName, tr.args, '→', tr.expected, '≠', tr.actual], encloseInCellHTML).join('')
+    testCaseDiv.innerHTML = `<div class="test-case ${resultClass}">${cellsHTML}</div>`
+    outputElement.appendChild(testCaseDiv);
+  }).join("<br>");
 }
 
 main();
