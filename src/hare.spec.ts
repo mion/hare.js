@@ -5,7 +5,8 @@ import "mocha";
 
 describe( '.tokenize()', () =>
 {
-  it( 'should return an array of tokens', () =>
+  // TODO it( 'should ')
+  it( 'should return an array of tokens when given a valid string', () =>
   {
     const str = "(hello 1 2 3)";
     const tokens = hare.tokenize( str );
@@ -14,7 +15,7 @@ describe( '.tokenize()', () =>
     //
     //    ["(", "hello", "1", "2", "3", ")"]
     //
-    expect( tokens.length ).to.equal( 6 ); // = 2 parens + 4 atoms
+    expect( tokens.length ).to.equal( 6 ); //  = 2 parens + 4 atoms
     expect( tokens[0] ).to.equal( '(' );
     expect( tokens[1] ).to.equal( 'hello' );
     expect( tokens[2] ).to.equal( '1' );
