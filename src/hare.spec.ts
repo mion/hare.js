@@ -5,7 +5,6 @@ import "mocha";
 
 describe( '.tokenize()', () =>
 {
-  // TODO it( 'should ')
   it( 'should return an array of tokens when given a valid string', () =>
   {
     const str = "(hello 1 2 3)";
