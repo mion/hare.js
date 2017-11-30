@@ -10,16 +10,13 @@ describe( '.tokenize()', () =>
   {
     // setup
     const str = "(hello 1 2 3)";
+    const expectedTokens = [
+      '(', 'hello', '1', '2', '3', ')'
+    ];
     // stress
     const tokens = hare.tokenize( str );
     // test
-    expect( tokens.length ).to.equal( 6 );
-    expect( tokens[0] ).to.equal( '(' );
-    expect( tokens[1] ).to.equal( 'hello' );
-    expect( tokens[2] ).to.equal( '1' );
-    expect( tokens[3] ).to.equal( '2' );
-    expect( tokens[4] ).to.equal( '3' );
-    expect( tokens[5] ).to.equal( ')' );
+    expect( tokens ).to.deep.equal( expectedTokens );
   });
   //////////////////////////////////////////////////////////////////////////////
   it('should work with a nested list string', () =>
