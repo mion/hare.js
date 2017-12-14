@@ -38,4 +38,26 @@ describe( '.replace()', () =>
     // test
     expect( array2 ).to.deep.equal( array );
   });
+  //////////////////////////////////////////////////////////////////////////////
+  it( 'should change elements at the beginning of the array', () =>
+  {
+    // setup
+    const array = ['foo', 'bar', 'baz']
+    const indexes:Array<number> = [0]
+    // stress
+    const array2 = editor.replace(array, indexes, 'quux')
+    // test
+    expect( array2 ).to.deep.equal( ['quux', 'bar', 'baz'] );
+  });
+  //////////////////////////////////////////////////////////////////////////////
+  it( 'should change elements at the end of the array', () =>
+  {
+    // setup
+    const array = ['foo', 'bar', 'baz']
+    const indexes:Array<number> = [2]
+    // stress
+    const array2 = editor.replace(array, indexes, 'quux')
+    // test
+    expect( array2 ).to.deep.equal( ['foo', 'bar', 'quux'] );
+  });
 });
