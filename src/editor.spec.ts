@@ -14,7 +14,7 @@ describe( '.replace()', () =>
     // stress
     const array2 = editor.replace(array, indexes, 'quux')
     // test
-    expect( array2 ).to.deep.equal( array );
+    expect( array2 ).to.deep.equal( ['foo', 'bar', 'baz'] );
   });
   //////////////////////////////////////////////////////////////////////////////
   it( 'should change one element for a single index', () =>
@@ -36,7 +36,18 @@ describe( '.replace()', () =>
     // stress
     const array2 = editor.replace(array, indexes, 'quux')
     // test
-    expect( array2 ).to.deep.equal( array );
+    expect( array2 ).to.deep.equal( ['foo', 'bar', 'baz'] );
+  });
+  //////////////////////////////////////////////////////////////////////////////
+  it( 'should not change elements for a negative index', () =>
+  {
+    // setup
+    const array = ['foo', 'bar', 'baz']
+    const indexes:Array<number> = [-1]
+    // stress
+    const array2 = editor.replace(array, indexes, 'quux')
+    // test
+    expect( array2 ).to.deep.equal( ['foo', 'bar', 'baz'] );
   });
   //////////////////////////////////////////////////////////////////////////////
   it( 'should change elements at the beginning of the array', () =>
